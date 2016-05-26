@@ -2,7 +2,9 @@
 title: "RepData1"
 author: "Tiby Kantrowitz"
 date: "May 24, 2016"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -73,8 +75,9 @@ g <-ggplot(sumStepsPerDay, aes(x=TotalSteps)) +
         annotate("text",label=mn, x=6250, y=8.5) +
         annotate("text",label="Median is", x=2500, y=8) +
         annotate("text",label=md, x=6250, y=8)
-print(g)
 ```
+
+![Histogram](figure/g.png)
 
 ### What's the average daily pattern?
 
@@ -105,8 +108,9 @@ g1 <-ggplot(aveStepsInterval, aes(x=Interval, y=AverageSteps)) +
         labs(y = "Average Steps") +
         labs(title = "Time Series Showing Average Favorite Time to be Active") +
         annotate("text",label="835 is the most active interval", x=busiestInterval$Interval, y=225)
-print(g1)
 ```
+![Time Series](figure/g1.png)
+
 ### Imputing missing values
 
 Note that there are missing values for number of days/intervals, (coded as NA). This may introduce bias into some calculations or summaries.
@@ -173,8 +177,9 @@ g2 <-ggplot(sumStepsPerDay1, aes(x=TotalSteps)) +
         annotate("text",label=round(mean(sumStepsPerDay1$TotalSteps),2), x=6000, y=8.5) +
         annotate("text",label="Median is", x=2750, y=8) +
         annotate("text",label=round(median(sumStepsPerDay1$TotalSteps),2), x=6000, y=8) 
-print(g2)
 ```
+
+![Histogram 2](figure/g2.png)
 
 ### Are there differences in activity patterns between weekdays and weekends?
 
@@ -211,4 +216,6 @@ g3 <-ggplot(aveStepsInterval1, aes(x=Interval, y=AverageSteps)) +
         geom_line(col="darkorchid4") + 
         facet_grid(DayType ~ .) +
         labs(title="Time Series of Intervals, Steps Taken by DayType")
-print(g3)
+```
+
+![Panel Plot](figure/g3.png)
